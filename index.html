@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/login.css">
+  </head>
+  <body class="d-flex justify-content-center align-items-center vh-100">
+
+        <div class="bg-white rounded-5 p-5">
+
+          <div class="d-flex justify-content-center">
+            <img src="img/Escudo.jpg">
+          </div>
+
+          <div id="formulario1" style="display: none">
+
+            <div class="text-center fs-1 fw-bold mt-3">
+              <h4>ADMINISTRADOR</h4>
+            </div>
+  
+            <div class="d-flex justify-content-center mt-4" style="display: none">
+              <form id="Admin" class="d-flex justify-content-center row" style="width: 12rem">
+                <input id="Email" type="email" class="form-control" placeholder="Correo">
+                <input id="Pass" type="password" class="form-control mt-2" placeholder="Clave">
+                <div class="d-flex justify-content-center mt-2">
+                  <button type="submit" required>Login</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+
+          <div id="formulario2" style="display: none">
+
+            <div class="text-center fs-1 fw-bold mt-3">
+              <h4>DOCENTE</h4>
+            </div>
+  
+            <div class="d-flex justify-content-center mt-4" style="display: none">
+              <form id="Docente" class="d-flex justify-content-center row" style="width: 12rem">
+                <input id="Email" type="email" class="form-control" placeholder="Correo">
+                <input id="Pass" type="password" class="form-control mt-2" placeholder="Clave">
+                <div class="d-flex justify-content-center mt-2">
+                  <button type="submit" required>Login</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+
+          <div id="formulario3" style="display: none">
+
+            <div class="text-center fs-1 fw-bold mt-3">
+              <h4>ESTUDIANTE</h4>
+            </div>
+  
+            <div class="d-flex justify-content-center mt-4" style="display: none">
+              <form id="Estudiante" class="d-flex justify-content-center row" style="width: 12rem">
+                <input id="Email" type="email" class="form-control" placeholder="Correo">
+                <input id="Pass" type="password" class="form-control mt-2" placeholder="Clave">
+                <div class="d-flex justify-content-center mt-2">
+                  <button type="submit" required>Login</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-center mt-5">
+            <button class="form-boton" onclick="mostrar1()">
+              <img src="img/Admin.png" class="img-fluid">
+            </button>
+            
+            <button class="form-boton" onclick="mostrar2()">
+              <img src="img/Docente.png" class="img-fluid">
+            </button>
+  
+            <button class="form-boton" onclick="mostrar3()">
+              <img src="img/Estudiante.png" class="img-fluid">
+            </button>
+          </div>
+
+        </div>
+
+    <script src="js/btn_log.js"></script>
+    <script type="module" src="js/login.js"></script>
+  </body>
+</html>
