@@ -11,7 +11,12 @@ document.getElementById('form').addEventListener('submit', async function(event)
         // Llama a Supabase para crear un nuevo usuario
         const { user, error } = await supabase.auth.signUp({
             email: email,
-            password: password
+            password: password,
+            options: {
+                data: {
+                    role: 'EST',
+                }
+            }
         });
 
         if (error) {
