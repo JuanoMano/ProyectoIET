@@ -7,17 +7,18 @@ body{
     width: auto;
     padding: 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     margin: 0;
 }
 
 .img-fluid{
     margin: auto;
     padding: auto;
-    width: 100px;
+    width: 85px;
 }
 
 .form-boton:hover {
     background-color: rgb(88, 196, 129);
     transition: 0.3s;
 }
+

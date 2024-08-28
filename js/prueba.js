@@ -9,7 +9,7 @@ document.getElementById('form').addEventListener('submit', async function(event)
 
     try {
         // Llama a Supabase para crear un nuevo usuario
-        const { user, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email: email,
             password: password,
             options: {

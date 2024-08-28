@@ -1,12 +1,12 @@
 import { onLogin } from '../supabase/Client'
 
-document.getElementById('Admin').addEventListener('submit', async function(event){
+document.getElementById('Admin').addEventListener('submit', function(event){
     event.preventDefault()
 
     const Email = document.getElementById('Email1').value
     const Clave = document.getElementById('Pass1').value
-
-    onLogin(Email, Clave, "./prueba.html")
+    
+    onLogin(Email, Clave, "/html/pruv.html")
 })
 
 document.getElementById('Docente').addEventListener('submit', function(event){
@@ -14,8 +14,8 @@ document.getElementById('Docente').addEventListener('submit', function(event){
 
     const Email = document.getElementById('Email2').value
     const Clave = document.getElementById('Pass2').value
-
-    onLogin(Email, Clave, "./prueba.html")
+ 
+   onLogin(Email, Clave, "/prueba.html")
 })
 
 document.getElementById('Estudiante').addEventListener('submit', function(event){
@@ -24,5 +24,6 @@ document.getElementById('Estudiante').addEventListener('submit', function(event)
     const Email = document.getElementById('Email3').value
     const Clave = document.getElementById('Pass3').value
 
-    onLogin(Email, Clave, "./html/estudiante.html", "EST")
+    onLogin(Email, Clave, "/html/estudiante.html", "EST")
 })
+
