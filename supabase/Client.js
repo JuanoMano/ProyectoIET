@@ -1,12 +1,12 @@
 import { createClient } from '@supabase/supabase-js'
 export const supabase = createClient(import.meta.env.VITE_APP_SUPABASE_URL, import.meta.env.VITE_APP_SUPABASE_ANON_KEY)
 
-export async function onLogin(Email, Clave, path, type_role) {
+export async function onLogin(email, password, path, type_role) {
     // Autenticar al estudiante
 
     const { data, error } = await supabase.auth.signInWithPassword({
-        email: Email,
-        password: Clave,
+        email: email,
+        password: password,
     });
 
     if (error) {
@@ -23,4 +23,43 @@ export async function onLogin(Email, Clave, path, type_role) {
     } else {
         alert("Rol incorrecto")
     }
+}
+
+export async function onRegister(email, password, path, type_role) {
+    const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                role: type_role
+            }
+        }
+    });
+
+    if (error) {
+        console.error('Error create:', error.message);
+
+        return
+    } 
+
+    alert("Creado con exito")
+}
+
+export async function onSigOut() {
+    const { error } = await supabase.auth.signOut()
+
+    if (error) return console.log(error)
+
+    alert("Session cerrada correctamente")
+}
+
+export async function onAuthChecking() {
+    const { data: {session}, error } = await supabase.auth.getSession()
+
+    if (error) {
+        alert("Error al comprobar la sesion")
+        return
+    }
+
+    return session
 }
