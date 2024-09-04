@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Fondo agradable */
+    line-height: 1.6;
+}
+
+header {
+    background-color: #0073e6; /* Fondo del encabezado */
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em; /* Tamaño del título principal */
+}
+
+main {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #0073e6;
+    font-size: 2em;
+    margin-top: 0;
+    text-align: center; /* Centra los subtítulos */
+}
+
+p {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.anteproyecto {
+    margin-top: 40px;
+}
+
+footer {
+    background-color: #004080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+    text-align: center;
+}
+
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 1.5em;
+}
+
+.back-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.back-button a:hover {
+    color: #ccc;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    main {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}

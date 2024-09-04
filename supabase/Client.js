@@ -1,8 +1,9 @@
 import { createClient } from '@supabase/supabase-js'
 export const supabase = createClient(import.meta.env.VITE_APP_SUPABASE_URL, import.meta.env.VITE_APP_SUPABASE_ANON_KEY)
 
+//autenticar credenciales para loguearse
+
 export async function onLogin(email, password, path, type_role) {
-    // Autenticar al estudiante
 
     const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
@@ -25,33 +26,67 @@ export async function onLogin(email, password, path, type_role) {
     }
 }
 
-export async function onRegister(email, password, path, type_role) {
+//registro de un estudiante
+
+export async function onRegister(email, password, type_role, name, grade) {
     const { data, error } = await supabase.auth.signUp({
-        email,
-        password,
+        email: email,
+        password: password,
+
         options: {
             data: {
-                role: type_role
+                role: type_role,
+                name: name,
+                grade: grade
             }
         }
     });
 
     if (error) {
-        console.error('Error create:', error.message);
+        console.error('Error al registrar un estudiante:', error.message);
 
         return
     } 
 
-    alert("Creado con exito")
+    alert("Usuario registrado con exito")
 }
 
-export async function onSigOut() {
+//registro de un docente
+
+export async function onRegDoc(email, password, type_role, name, espc) {
+    const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+
+        options: {
+            data: {
+                role: type_role,
+                name: name,
+                espc: espc
+            }
+        }
+    });
+
+    if (error) {
+        console.error('Error al registrar docente:', error.message);
+
+        return
+    } 
+
+    alert("Usuario registrado con exito")
+}
+
+//cerrar sesion
+
+export async function onSignOut() {
     const { error } = await supabase.auth.signOut()
 
     if (error) return console.log(error)
 
-    alert("Session cerrada correctamente")
+    alert("Sesion cerrada correctamente")
 }
+
+//comprueba si existe una sesion y la entrega
 
 export async function onAuthChecking() {
     const { data: {session}, error } = await supabase.auth.getSession()

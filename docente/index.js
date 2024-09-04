@@ -1,16 +1,16 @@
-import { onAuthChecking, onSigOut, supabase } from "../../supabase/Client"
+import { onAuthChecking, onSignOut } from "../supabase/Client"
 
 onAuthChecking().then(session => {
 
     console.log(session)
 
-    if (!session) window.location.href = './index.html'
+    if (!session) window.location.href = '../index.html'
 
     if (session?.user) {
         const { role } = session.user.user_metadata
 
-        if (role != "EST") {
-            window.location.href = './index.html'
+        if (role != "DOC") {
+            window.location.href = '../index.html'
         }
     }
 })
@@ -25,10 +25,10 @@ supabase.auth.onAuthStateChange((event, session) => {
                 })
         })
 
-        window.location.href = './index.html'
+        window.location.href = '../index.html'
     }
 })
 
 document.getElementById('btn_logout').addEventListener('click', () => {
-    onSigOut()
+    onSignOut()
 })

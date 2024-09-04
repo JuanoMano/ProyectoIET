@@ -1,49 +1,37 @@
-import { onAuthChecking, onLogin, supabase } from '../supabase/Client'
+import { onLogin, onRegister } from '../supabase/Client'
 
-onAuthChecking().then(session => {
-    if (session?.user) {
-        const { role } = session.user.user_metadata
-
-        if (role == "ADM") {
-            window.location.href = './admin.html'
-        }
-
-        if (role == "DOC") {
-            window.location.href = './docente.html'
-        }
-
-        if (role == "EST") {
-            window.location.href = './estudiante.html'
-        }
-    }
-})
+//captura de datos admin
 
 document.getElementById('Admin').addEventListener('submit', function (event) {
     event.preventDefault()
 
-    const Email = document.getElementById('Email1').value
-    const Clave = document.getElementById('Pass1').value
+    const email = document.getElementById('Email1').value
+    const password = document.getElementById('Pass1').value
 
-    onLogin(Email, Clave, "/admin.html", "ADM")
+    onLogin(email, password, "/admin/admin.html", "ADM")
 })
+
+//captura de datos docente
 
 document.getElementById('Docente').addEventListener('submit', function (event) {
     event.preventDefault()
 
-    const Email = document.getElementById('Email2').value
-    const Clave = document.getElementById('Pass2').value
+    const email = document.getElementById('Email2').value
+    const password = document.getElementById('Pass2').value
 
-    onLogin(Email, Clave, "/docente.html", "DOC")
+    onLogin(email, password, "/docente/home.html", "DOC")
 })
+
+//captura de datos de estudiante
 
 document.getElementById('Estudiante').addEventListener('submit', function (event) {
     event.preventDefault()
 
-    const Email = document.getElementById('Email3').value
-    const Clave = document.getElementById('Pass3').value
+    const email = document.getElementById('Email3').value
+    const password = document.getElementById('Pass3').value
 
-    onLogin(Email, Clave, "/estudiante.html", "EST")
+    onLogin(email, password, "/estudiante/estudiante.html", "EST")
 })
 
-// document.getElementById("test").addEventListener('click', () => onRegister("pruebaDoce@gmail.com", '123456', "", "DOC"))
-
+document.getElementById("create").addEventListener('click', () => 
+    onRegister("biblioteca@servicio.social", "SSBB01", "DOC", "Aurelia", "Biblioteca"))

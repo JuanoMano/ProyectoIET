@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 18px; /* Tamaño de fuente más grande */
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff; /* Fondo suave y agradable */
+}
+
+header {
+    background-color: #004080; /* Fondo contrastante para el encabezado */
+    color: white;
+    text-align: center;
+    padding: 30px 0; /* Más espacio alrededor del texto */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em; /* Tamaño del título principal */
+}
+
+header p {
+    margin: 10px 0 0;
+    font-size: 1.2em;
+}
+
+main {
+    padding: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.service {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    display: flex;
+    margin-bottom: 30px; /* Espacio extra entre secciones */
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+}
+
+.service img {
+    width: 100%;
+    max-width: 300px;
+    object-fit: cover;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.service-info {
+    padding: 20px 30px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Centra el contenido */
+}
+
+.service-info h2 {
+    margin-top: 0;
+    color: #004080;
+    font-size: 2em; /* Tamaño del título */
+    text-align: center; /* Centra el título */
+}
+
+.service-info p {
+    margin: 15px 0 0;
+    line-height: 1.6;
+    text-align: center; /* Centra el párrafo */
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #004080;
+    color: white;
+}
+
+footer p {
+    margin: 0;
+}
+
+.back-button {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: 1.5em;
+}
+
+.back-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.back-button a:hover {
+    color: #ccc;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .service {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .service img {
+        max-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .service-info {
+        padding: 20px;
+    }
+} 
