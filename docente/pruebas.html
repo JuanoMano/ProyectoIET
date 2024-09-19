@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar actividad</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex flex-column align-items-center vh-100 p-3">
+    <!-- Botón para abrir el formulario -->
+    <button class="btn btn-primary" id="assignActivityBtn">Asignar una actividad</button>
+
+    <!-- Modal con el formulario -->
+    <div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="activityModalLabel">Nueva actividad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="activityForm">
+                        <div class="mb-3">
+                            <label for="activityName" class="form-label">Nombre de la actividad</label>
+                            <input type="text" class="form-control" id="activityName" placeholder="Ingresa el nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="numMembers" class="form-label">Cantidad de Integrantes</label>
+                            <input type="number" class="form-control" id="numMembers" placeholder="Ingresa la cantidad" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="hours" class="form-label">Cantidad de Horas</label>
+                            <input type="number" class="form-control" id="hours" placeholder="Ingresa las horas" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dueDate" class="form-label">Fecha Límite</label>
+                            <input type="date" class="form-control" id="dueDate" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Crear Actividad</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor para mostrar las tarjetas con los detalles de las actividades -->
+    <div id="activityCardContainer" class="mt-4"></div>
+
+    <!-- Modal para ingresar nombre completo -->
+    <div class="modal fade" id="nameModal" tabindex="-1" aria-labelledby="nameModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nameModalLabel">Realizar actividad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="nameForm">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Nombre completo</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Ingresa tu nombre" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Solicitar Actividad</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const assignActivityBtn = document.getElementById('assignActivityBtn');
+        const activityModal = new bootstrap.Modal(document.getElementById('activityModal'));
+        const nameModal = new bootstrap.Modal(document.getElementById('nameModal'));
+        const activityForm = document.getElementById('activityForm');
+        const activityCardContainer = document.getElementById('activityCardContainer');
+
+        // Mostrar modal para ingresar actividad
+        assignActivityBtn.addEventListener('click', () => {
+            activityModal.show();
+        });
+
+        // Manejar el envío del formulario de actividad
+        activityForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Obtener los valores del formulario
+            const activityName = document.getElementById('activityName').value;
+            const numMembers = document.getElementById('numMembers').value;
+            const hours = document.getElementById('hours').value;
+            const dueDate = document.getElementById('dueDate').value;
+
+            // Crear la tarjeta con los detalles
+            const activityCard = `
+                <div class="card mb-3" style="max-width: 600px;">
+                    <div class="card-header">${activityName}</div>
+                    <div class="card-body align-items-center">
+                        <p class="card-text"><strong>Cantidad de integrantes:</strong> ${numMembers}</p>
+                        <p class="card-text"><strong>Cantidad de horas:</strong> ${hours}</p>
+                        <p class="card-text"><strong>Fecha límite:</strong> ${dueDate}</p>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-primary" id="takeActivityBtn">Realizar actividad</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Agregar la nueva tarjeta al contenedor sin reemplazar las anteriores
+            activityCardContainer.innerHTML += activityCard;
+
+            // Cerrar el modal
+            activityModal.hide();
+        });
+
+        // Mostrar modal para ingresar el nombre completo
+        document.addEventListener('click', (event) => {
+            if (event.target.id === 'takeActivityBtn') {
+                nameModal.show();
+            }
+        });
+
+        // Manejar el envío del formulario de nombre completo
+        document.getElementById('nameForm').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            // Obtener el nombre completo
+            const fullName = document.getElementById('fullName').value;
+
+            // Aquí puedes manejar el nombre completo según sea necesario (enviar a un servidor, etc.)
+
+            // Cerrar el modal
+            nameModal.hide();
+
+            // Limpiar el campo de nombre completo
+            document.getElementById('fullName').value = '';
+
+            // Mostrar un mensaje de confirmación
+            alert(`Actividad solicitada por: ${fullName}`);
+        });
+    </script>
+
+</body>
+</html>

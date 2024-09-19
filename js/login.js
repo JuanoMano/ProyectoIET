@@ -1,4 +1,4 @@
-import { onLogin, onRegister } from '../supabase/Client'
+import { onLogin } from '../supabase/Client'
 
 //captura de datos admin
 
@@ -8,7 +8,7 @@ document.getElementById('Admin').addEventListener('submit', function (event) {
     const email = document.getElementById('Email1').value
     const password = document.getElementById('Pass1').value
 
-    onLogin(email, password, "/admin/admin.html", "ADM")
+    onLogin(email, password, "/admin/lista.html", "ADM")
 })
 
 //captura de datos docente
@@ -33,5 +33,5 @@ document.getElementById('Estudiante').addEventListener('submit', function (event
     onLogin(email, password, "/estudiante/estudiante.html", "EST")
 })
 
-document.getElementById("create").addEventListener('click', () => 
-    onRegister("biblioteca@servicio.social", "SSBB01", "DOC", "Aurelia", "Biblioteca"))
+// document.getElementById("create").addEventListener('click', () => 
+//     onRegDoc("cartelera@servicio.social", "SSCA02", "DOC", "nombre", "Cartelera"))

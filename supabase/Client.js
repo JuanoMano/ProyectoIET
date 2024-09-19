@@ -53,7 +53,7 @@ export async function onRegister(email, password, type_role, name, grade) {
 
 //registro de un docente
 
-export async function onRegDoc(email, password, type_role, name, espc) {
+export async function onRegDoc(email, password, type_role, name, depend) {
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
@@ -62,7 +62,7 @@ export async function onRegDoc(email, password, type_role, name, espc) {
             data: {
                 role: type_role,
                 name: name,
-                espc: espc
+                depend: depend
             }
         }
     });
