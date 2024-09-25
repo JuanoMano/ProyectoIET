@@ -1,4 +1,4 @@
-import { onAuthChecking, onSignOut } from "../supabase/Client"
+import { onAuthChecking, onSignOut, supabase } from "../../supabase/Client"
 
 onAuthChecking().then(session => {
 
@@ -29,6 +29,7 @@ supabase.auth.onAuthStateChange((event, session) => {
     }
 })
 
-document.getElementById('btn_logout').addEventListener('click', () => {
+document.getElementById('log_out').addEventListener('click', () => {
     onSignOut()
 })
+

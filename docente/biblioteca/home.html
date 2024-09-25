@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PQRS</title>
+    <title>Inicio</title>
     <link rel="stylesheet" href="home_nav.css">
     <link rel="stylesheet" href="home_bi.css">
-    <link rel="stylesheet" href="pqrs.css">
     <!-- Boxicon links -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -14,7 +13,9 @@
     
 <header class="header">
     <div class="logo">
+        <a href="https://q.plataformaintegra.net/ietfelixtiberio/index.php/">
         <img src="/img/Escudo.jpg" alt="Logo Insitiucional">
+        </a>
     </div>
     <nav>
         <ul class="nav-links">
@@ -27,7 +28,9 @@
 
 <div class="siderbar">
     <div class="logo_content">
+        <p class="menu">MENU</p>
         <div class="logo">
+            <p class="menu">MENU</p>
             <i class='bx bxl-c-plus-plus'></i>
             <div class="logo_name">Servicio Social</div>
         </div>
@@ -35,23 +38,11 @@
     </div>
     <ul class="nav_list">
         <li>
-                <i class='bx bx-search-alt'></i>
-                <input type="text" placeholder="Buscar...">
-            <span class="tooltip">Buscar</span>
-        </li>
-        <li>
             <a href="home.html">
                 <i class='bx bxs-home' ></i>
                 <span class="links_name">Inicio</span>
             </a>
             <span class="tooltip">Inicio</span>
-        </li>
-        <li>
-            <a href="menu.html">
-                <i class='bx bx-menu'></i>
-                <span class="links_name">Menu</span>
-            </a>
-            <span class="tooltip">Menu</span>
         </li>
         <li>
             <a href="calendario.html">
@@ -103,48 +94,20 @@
     </div>
 </div>
 
-<div class="container">
-    <h1>Gestión de PQRS</h1>
-    <button id="newPqrsBtn">Agregar nueva PQRS</button>
-
-    <!-- Formulario para crear una nueva PQRS -->
-    <div id="pqrsForm" class="hidden">
-        <h2>Nueva PQRS</h2>
-        <form id="form">
-            <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo" required><br>
-
-            <label for="asunto">Asunto:</label>
-            <input type="text" id="asunto" name="asunto" required><br>
-
-            <label for="categoria">Categoría:</label>
-            <select id="categoria" name="categoria" required>
-                <option value="administrativos">Administrativos</option>
-                <option value="docentes">Docentes</option>
-            </select><br>
-
-            <label for="descripcion">Descripción:</label><br>
-            <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br>
-
-            <button type="submit">Enviar PQRS</button>
-        </form>
+<div class="home_content">
+    <div class="content content1" >
+       MI DEPENDENCIA
     </div>
+    <div class="content content2">ACTIVIDADES GLOBALES</div>
+    <div class="content content3">ACTIVIDADES SOLICITADAS</div></div>
 
-    <!-- Lista de PQRS creadas -->
-    <div id="pqrsList">
-        <h2>PQRS creadas</h2>
-        <!-- Las PQRS se agregarán aquí dinámicamente -->
-    </div>
-</div>
-
-<script src="pqrs.js"></script>
-
+<script type="module" src="index.js"></script>
 <script>
     let btn = document.querySelector("#btn");
     let siderbar = document.querySelector(".siderbar");
     let searchBtn = document.querySelector(".bx-search-alt");
-    let bx = document.querySelector("#log_out");
 
+    
     btn.onclick = function() {
         siderbar.classList.toggle("active");
     }
@@ -152,11 +115,6 @@
     searchBtn.onclick = function() {
         siderbar.classList.toggle("active");
     }
-
-    bx.onclick = function() {
-        window.location.href = "index.html";
-    }
-
 
 </script>
 

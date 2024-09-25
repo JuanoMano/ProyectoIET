@@ -39,6 +39,26 @@
     font-weight: 400;
 }
 
+.siderbar .menu{
+    position: absolute;
+    color: #fff;
+    left: 42%;
+    font-size: 15px;
+    opacity: 0;
+    top: 8px;
+    font-weight: bold;
+    font-size: 25px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translate(-50%);
+}
+
+.siderbar.active .menu{
+    opacity: 100%;
+}
+
 .siderbar #btn{
     position: absolute;
     color: #fff;
@@ -305,9 +325,10 @@
     top: 260px;
 }
 
-.siderbar.active ~ .home_content{
-    width: 852px;
+.siderbar.active ~ .home_content {
+    transform: translateX(164px);
 }
+
 .siderbar.active ~ .home_content .content1{
     width: 630px;
 }

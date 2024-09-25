@@ -27,25 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('pqrsList', JSON.stringify(pqrsListStorage));
 
         // Actualizar la lista de PQRS en el frontend
-        displayPqrsList();
+        // displayPqrsList();
 
         // Limpiar el formulario y ocultarlo
         form.reset();
         pqrsForm.classList.add('hidden');
     });
 
-    // Mostrar la lista de PQRS al cargar la página
-    const displayPqrsList = () => {
-        pqrsList.innerHTML = '<h2>PQRS creadas</h2>';
-        const pqrsListStorage = JSON.parse(localStorage.getItem('pqrsList')) || [];
-
-        pqrsListStorage.forEach(pqrs => {
-            const pqrsItem = document.createElement('div');
-            pqrsItem.innerHTML = `<h3>${pqrs.asunto}</h3><p>${pqrs.descripcion}</p><p><strong>Tipo:</strong> ${pqrs.tipo} | <strong>Categoría:</strong> ${pqrs.categoria}</p>`;
-            pqrsList.appendChild(pqrsItem);
-        });
-    };
-
-    // Llamar a la función para mostrar las PQRS
-    displayPqrsList();
 });

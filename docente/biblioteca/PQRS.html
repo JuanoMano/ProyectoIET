@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayuda</title>
+    <title>PQRS</title>
     <link rel="stylesheet" href="home_nav.css">
     <link rel="stylesheet" href="home_bi.css">
+    <link rel="stylesheet" href="pqrs.css">
     <!-- Boxicon links -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -26,6 +27,7 @@
 
 <div class="siderbar">
     <div class="logo_content">
+        <p class="menu">MENU</p>
         <div class="logo">
             <i class='bx bxl-c-plus-plus'></i>
             <div class="logo_name">Servicio Social</div>
@@ -33,11 +35,6 @@
         <i class='bx bx-menu' id="btn"></i>
     </div>
     <ul class="nav_list">
-        <li>
-                <i class='bx bx-search-alt'></i>
-                <input type="text" placeholder="Buscar...">
-            <span class="tooltip">Buscar</span>
-        </li>
         <li>
             <a href="home.html">
                 <i class='bx bxs-home' ></i>
@@ -84,29 +81,51 @@
     <div class="profile_content">
         <div class="profile">
             <div class="profile_details">
-                <img src="/img/Docente.png" alt="">
-                 <div class="name_user">
-                    <div class="name">Kevin Donoso</div>
-                    <div class="user">Diseñador Web</div>
-                 </div>
             </div>
             <i class='bx bx-log-out' id="log_out"></i>
         </div>
     </div>
 </div>
 
-<div class="home_content">
-    <div class="content content1" >
-        Esta es la pagina de ayuda donde se otorgara informacion sobre la pagina y/o servicios sociales 
-    </div>
-    <div class="content content2">que pasa si este tambien es grande?</div>
-    <div class="content content3">aqui va mas informacion y ya</div></div>
+<div class="container">
+    <h1>Gestión de PQRS</h1>
+    <button id="newPqrsBtn">Agregar nueva PQRS</button>
 
+    <!-- Formulario para crear una nueva PQRS -->
+    <div id="pqrsForm" class="hidden">
+        <h2>Nueva PQRS</h2>
+        <form id="form">
+            <label for="tipo">Tipo:</label>
+            <select name="tipo" id="tipo">
+                <option value="Peticiones">Peticiones</option>
+                <option value="Quejas">Quejas</option>
+                <option value="Reclamos">Reclamos</option>
+                <option value="Sugerencias">Sugerencias</option>
+            </select>
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" name="asunto" required><br>
+
+            <label for="categoria">Categoría:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="administrativos">Administrativos</option>
+                <option value="docentes">Docentes</option>
+            </select><br>
+
+            <label for="descripcion">Descripción:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" required></textarea><br>
+
+            <button type="submit">Enviar PQRS</button>
+        </form>
+    </div>
+
+</div>
+
+<script src="pqrs.js"></script>
+<script type="module" src="index.js"></script>
 <script>
     let btn = document.querySelector("#btn");
     let siderbar = document.querySelector(".siderbar");
     let searchBtn = document.querySelector(".bx-search-alt");
-    let bx = document.querySelector("#log_out");
 
     btn.onclick = function() {
         siderbar.classList.toggle("active");
@@ -115,11 +134,6 @@
     searchBtn.onclick = function() {
         siderbar.classList.toggle("active");
     }
-
-    bx.onclick = function() {
-        window.location.href = "index.html";
-    }
-
 
 </script>
 

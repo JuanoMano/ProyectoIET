@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actividades</title>
+    <title>Ayuda</title>
     <link rel="stylesheet" href="home_nav.css">
     <link rel="stylesheet" href="home_bi.css">
+    <link rel="stylesheet" href="calendario.css">
     <!-- Boxicon links -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -26,6 +27,7 @@
 
 <div class="siderbar">
     <div class="logo_content">
+        <p class="menu">MENU</p>
         <div class="logo">
             <i class='bx bxl-c-plus-plus'></i>
             <div class="logo_name">Servicio Social</div>
@@ -33,11 +35,6 @@
         <i class='bx bx-menu' id="btn"></i>
     </div>
     <ul class="nav_list">
-        <li>
-                <i class='bx bx-search-alt'></i>
-                <input type="text" placeholder="Buscar...">
-            <span class="tooltip">Buscar</span>
-        </li>
         <li>
             <a href="home.html">
                 <i class='bx bxs-home' ></i>
@@ -96,20 +93,54 @@
 </div>
 
 <div class="home_content">
-    <div class="content content1" >
-        MOSTRAR TITULO BONITO SOBRE LA DEPENDENCIA, Y  UNA LISTA DE LOS ESTUDIANTES INTERACTIVA.
+    <div class="calendar-container">
+        <div class="calendar">
+            <div class="head">
+                <h1 id="month-year"></h1>
+                <button id="add-event-btn">Agregar Evento</button>
+            </div>
+            <div class="calendar-content">
+                <div class="calendar-grid">
+                    <div class="weekdays">
+                        <div>Dom</div>
+                        <div>Lun</div>
+                        <div>Mar</div>
+                        <div>Mié</div>
+                        <div>Jue</div>
+                        <div>Vie</div>
+                        <div>Sáb</div>
+                    </div>
+                    <div id="calendar-days" class="days-grid"></div>
+                </div>
+                <div class="event-list">
+                    <h2>Eventos</h2>
+                    <ul id="event-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para agregar eventos -->
+        <div class="modal" id="event-modal">
+            <div class="modal-content">
+                <h2>Agregar Evento</h2>
+                <input type="text" id="event-title" placeholder="Título del evento" required>
+                <input type="date" id="event-date" required>
+                <input type="time" id="event-start-time" required>
+                <input type="time" id="event-end-time" required>
+                <button id="save-event-btn">Guardar Evento</button>
+                <button id="close-modal-btn">Cerrar</button>
+            </div>
+        </div>
     </div>
 
-    <div class="content content2">ACTIVIDADES
-        
-    </div>
-    <div class="content content3">ACTIVIDADES SOLICITADAS</div></div>
+    <script src="calendario.js"></script>
 
+<script type="module" src="index.js"></script>
 <script>
     let btn = document.querySelector("#btn");
     let siderbar = document.querySelector(".siderbar");
     let searchBtn = document.querySelector(".bx-search-alt");
-    let bx = document.querySelector("#log_out");
+
 
     btn.onclick = function() {
         siderbar.classList.toggle("active");
@@ -118,11 +149,6 @@
     searchBtn.onclick = function() {
         siderbar.classList.toggle("active");
     }
-
-    bx.onclick = function() {
-        window.location.href = "index.html";
-    }
-
 
 </script>
 

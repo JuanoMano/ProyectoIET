@@ -17,18 +17,28 @@ export async function onLogin(email, password, path, type_role) {
         return
     } 
     
-    const { role } = data.user.user_metadata
+    const { role, depend } = data.user.user_metadata
 
     if (role == type_role) {    
-        window.location.href = path
+
+        if (depend == "Biblioteca") {
+            path = "/docente/biblioteca/home.html";
+        } else if (depend == "Cartelera") {
+            path = "/docente/cartelera/fofef.html";
+        } else {
+            path = "/docente/pruebas/prueba.html";  
+        }
+
+        window.location.href = path;
     } else {
         alert("Rol incorrecto")
     }
+
 }
 
 //registro de un estudiante
 
-export async function onRegister(email, password, type_role, name, grade) {
+export async function onRegister(email, password, type_role, name, grade, depend) {
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
@@ -37,7 +47,8 @@ export async function onRegister(email, password, type_role, name, grade) {
             data: {
                 role: type_role,
                 name: name,
-                grade: grade
+                grade: grade,
+                depend: depend
             }
         }
     });

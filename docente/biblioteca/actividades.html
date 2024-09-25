@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Actividades</title>
     <link rel="stylesheet" href="home_nav.css">
     <link rel="stylesheet" href="home_bi.css">
     <!-- Boxicon links -->
@@ -13,9 +13,7 @@
     
 <header class="header">
     <div class="logo">
-        <a href="https://q.plataformaintegra.net/ietfelixtiberio/index.php/">
         <img src="/img/Escudo.jpg" alt="Logo Insitiucional">
-        </a>
     </div>
     <nav>
         <ul class="nav-links">
@@ -28,6 +26,7 @@
 
 <div class="siderbar">
     <div class="logo_content">
+        <p class="menu">MENU</p>
         <div class="logo">
             <i class='bx bxl-c-plus-plus'></i>
             <div class="logo_name">Servicio Social</div>
@@ -35,11 +34,6 @@
         <i class='bx bx-menu' id="btn"></i>
     </div>
     <ul class="nav_list">
-        <li>
-                <i class='bx bx-search-alt'></i>
-                <input type="text" placeholder="Buscar...">
-            <span class="tooltip">Buscar</span>
-        </li>
         <li>
             <a href="home.html">
                 <i class='bx bxs-home' ></i>
@@ -99,17 +93,20 @@
 
 <div class="home_content">
     <div class="content content1" >
-       MI DEPENDENCIA
+        MOSTRAR TITULO BONITO SOBRE LA DEPENDENCIA, Y  UNA LISTA DE LOS ESTUDIANTES INTERACTIVA.
     </div>
-    <div class="content content2">ACTIVIDADES GLOBALES</div>
+
+    <div class="content content2">ACTIVIDADES
+        
+    </div>
     <div class="content content3">ACTIVIDADES SOLICITADAS</div></div>
 
+<script type="module" src="index.js"></script>
 <script>
     let btn = document.querySelector("#btn");
     let siderbar = document.querySelector(".siderbar");
     let searchBtn = document.querySelector(".bx-search-alt");
-    let bx = document.querySelector("#log_out");
-    
+
     btn.onclick = function() {
         siderbar.classList.toggle("active");
     }
@@ -118,9 +115,6 @@
         siderbar.classList.toggle("active");
     }
 
-    bx.onclick = function() {
-        window.location.href = "index.html";
-    }
 </script>
 
 </body>

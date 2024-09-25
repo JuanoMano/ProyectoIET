@@ -16,6 +16,14 @@
         </div>
 
     </div>
-    <script src="admin.js" type="module"></script>
+    
+    <script type="module">
+        import { onRegDoc } from '../supabase/Client.js'
+
+        //lo que esta abajo de esto es para crear nuevos usuarios ya sea docente o admin, asi es mas facil, rapido y manual.
+        document.getElementById("create").addEventListener('click', () => 
+        onRegDoc("huerta@servicio.social", "SSHU04", "DOC", "pendiente", "Huerta"))
+
+    </script>
 </body>
 </html>
