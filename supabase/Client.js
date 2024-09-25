@@ -3,7 +3,7 @@ export const supabase = createClient(import.meta.env.VITE_APP_SUPABASE_URL, impo
 
 //autenticar credenciales para loguearse
 
-export async function onLogin(email, password, path, type_role) {
+export async function onLogin(email, password, path) {
 
     const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
@@ -19,17 +19,34 @@ export async function onLogin(email, password, path, type_role) {
     
     const { role, depend } = data.user.user_metadata
 
-    if (role == type_role) {    
+    // if (role == type_role) {    
+    //     window.location.href = path
+    // }
+    
+    if (role == "DOC") {
 
         if (depend == "Biblioteca") {
             path = "/docente/biblioteca/home.html";
         } else if (depend == "Cartelera") {
             path = "/docente/cartelera/fofef.html";
         } else {
-            path = "/docente/pruebas/prueba.html";  
+            path = "/html/prueba.html"; 
         }
 
-        window.location.href = path;
+        window.location.href = path
+
+    } else if (role == "EST") {
+
+        if (depend == "Biblioteca") {
+            path = "/estudiante/biblioteca/home.html";
+        } else if (depend == "Cartelera") {
+            path = "/estudiante/cartelera/home.html";
+        } else {
+            path = "/html/prueba.html";  
+        }
+
+        window.location.href = path
+
     } else {
         alert("Rol incorrecto")
     }
