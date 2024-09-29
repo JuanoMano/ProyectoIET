@@ -65,3 +65,41 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
+
+//SCRIPTS PARA LA LISTA DE ESTUDIANTES 
+
+// Mostrar el modal al hacer clic en el botón "bx-plus"
+document.getElementById('add-student-btn').addEventListener('click', function() {
+    const addStudentModal = new bootstrap.Modal(document.getElementById('studentModal'));
+    addStudentModal.show();
+});
+
+// Manejar el envío del formulario dentro del modal
+document.getElementById('regEst').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Obtener los valores del formulario
+    const studentName = document.getElementById('name').value;
+    const studentGrade = document.getElementById('grade').value;
+
+    // Crear una nueva fila para la tabla
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>
+            <img src="/img/Estudiante.png">
+            <p>${studentName}</p>
+        </td>
+        <td>${studentGrade}</td>
+        <td>
+            <span class="status pending">Pending</span>
+            <button class="bx bx-edit"></button>
+        </td>
+    `;
+
+    // Agregar la nueva fila a la tabla
+    document.getElementById('student-list').appendChild(newRow);
+
+    // Cerrar el modal
+    const addStudentModal = bootstrap.Modal.getInstance(document.getElementById('studentModal'));
+    addStudentModal.hide();
+});
