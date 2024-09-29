@@ -11,7 +11,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- My CSS -->
 	<link rel="stylesheet" href="home.css">
-	<title>AdminHub</title>
+	<title>DocenteHub</title>
 </head>
 <body>
 
@@ -62,7 +62,7 @@
 			</li>
 			<li>
 				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
+					<i class='bx bxs-log-out-circle' id="logout"></i>
 					<span class="text">Cerrar sesión</span>
 				</a>
 			</li>
@@ -113,7 +113,7 @@
 								<th>Estado</th>
 							</tr>
 						</thead>
-						<tbody id="student-list">
+						<tbody class="StudentList" id="student-list">
 							 <!-- Nuevas filas se agregarán aquí -->
 						</tbody>
 					</table>
@@ -154,28 +154,54 @@
 				</div>
 
 				<div class="todo">
-					<div class="head">
+					<div class="head mb-3">
 						<h3>Actividades Globales</h3>
-						<i class='bx bx-upload' ></i>
-						<i class='bx bx-trash' ></i>
+						<i class='bx bx-upload' id="open-modal"></i>
 					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Nombre Actividad</p>
-							<i class='bx bx-info-circle' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Nombre Actividad</p>
-							<i class='bx bx-info-circle' ></i>
-						</li>
+					<ul class="todo-list" id="activity-list">
+						<!-- Aquí se agregarán las actividades -->
 					</ul>
 				</div>
+				
+				<!-- Modal con el formulario para agregar actividades -->
+				<div class="modal fade" id="activityModal" tabindex="-1" aria-labelledby="activityModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="activityModalLabel">Nueva actividad</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<form id="activityForm">
+									<div class="mb-3">
+										<label for="activityName" class="form-label">Nombre de la actividad</label>
+										<input type="text" class="form-control" id="activityName" placeholder="Ingresa el nombre" required>
+									</div>
+									<div class="mb-3">
+										<label for="numMembers" class="form-label">Cantidad de Integrantes</label>
+										<input type="number" class="form-control" id="numMembers" placeholder="Ingresa la cantidad" required>
+									</div>
+									<div class="mb-3">
+										<label for="hours" class="form-label">Cantidad de Horas</label>
+										<input type="number" class="form-control" id="hours" placeholder="Ingresa las horas" required>
+									</div>
+									<div class="mb-3">
+										<label for="dueDate" class="form-label">Fecha Límite</label>
+										<input type="date" class="form-control" id="dueDate" required>
+									</div>
+									<button type="submit" class="btn btn-success">Crear Actividad</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>				
 			</div>
 		</main>
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
 	
-	<script src="home.js"></script>
+	<script type ="module" src="home.js"></script>
+	<script type="module" src="index.js"></script>
 </body>
 </html>

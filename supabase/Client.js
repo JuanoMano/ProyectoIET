@@ -126,3 +126,20 @@ export async function onAuthChecking() {
 
     return session
 }
+
+// actividades globales
+
+export async function insertGlobalA(name, cantI, cantH, fecha, createBy){
+
+    const { error } = await supabase
+  .from('actG')
+  .insert({ name: name, cantI: cantI, cantH: cantH, fecha: fecha, createBy: createBy })
+
+  if (error) {
+    console.error('Error al insertar datos:', error);
+    alert('Error al insertar datos: ' + error.message);  // Mostrar el error en la página
+    } else {
+    console.log('Datos insertados correctamente');
+    }
+
+}

@@ -55,7 +55,7 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 280px;
+	width: 240px;
 	height: 100%;
 	background: var(--light);
 	z-index: 2000;
@@ -93,6 +93,7 @@ body {
 #sidebar .side-menu {
 	width: 100%;
 	margin-top: 48px;
+	padding-left: 0;
 }
 #sidebar .side-menu li {
 	height: 48px;
@@ -166,8 +167,8 @@ body {
 /* CONTENT */
 #content {
 	position: relative;
-	width: calc(100% - 280px);
-	left: 280px;
+	width: calc(100% - 240px);
+	left: 240px;
 	transition: .3s ease;
 }
 #sidebar.hide ~ #content {
@@ -296,7 +297,7 @@ body {
 /* MAIN */
 #content main {
 	width: 100%;
-	padding: 36px 24px;
+	padding: 24px 24px;
 	font-family: var(--poppins);
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
@@ -305,7 +306,6 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	grid-gap: 24px;
-	margin-top: 24px;
 	width: 100%;
 	color: var(--dark);
 }
@@ -376,13 +376,13 @@ body {
 	background: var(--orange);
 }
 
-
 #content main .table-data .todo {
 	flex-grow: 1;
 	flex-basis: 300px;
 }
 #content main .table-data .todo .todo-list {
 	width: 100%;
+	padding-left: 0;
 }
 #content main .table-data .todo .todo-list li {
 	width: 100%;
@@ -462,13 +462,11 @@ body {
 		background: var(--red);
 	}
 
+	/* AQUI EN VEZ DE NOTIFICACION Y PROFILE PUES DEBERIA IR LO DE CONTACTO */
+
 	#content nav form.show ~ .notification,
 	#content nav form.show ~ .profile {
 		display: none;
-	}
-
-	#content main .box-info {
-		grid-template-columns: 1fr;
 	}
 
 	#content main .table-data .head {
