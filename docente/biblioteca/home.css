@@ -259,7 +259,7 @@ body {
 
 /* OE OJO AQUI QUE YO BORRE ESTO DONDE IBA LA IMAGEN QUE ES AHORA "CONTACTOS"*/
 
-#content nav .profile img {
+#content nav .nav-link img {
 	width: 36px;
 	height: 36px;
 	object-fit: cover;
