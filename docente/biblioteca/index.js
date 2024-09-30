@@ -29,7 +29,6 @@ supabase.auth.onAuthStateChange((event, session) => {
     }
 })
 
-document.getElementById('log_out').addEventListener('click', () => {
+document.getElementById('logout').addEventListener('click', () => {
     onSignOut()
 })
-

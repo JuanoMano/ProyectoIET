@@ -55,7 +55,7 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 280px;
+	width: 240px;
 	height: 100%;
 	background: var(--light);
 	z-index: 2000;
@@ -167,8 +167,8 @@ body {
 /* CONTENT */
 #content {
 	position: relative;
-	width: calc(100% - 280px);
-	left: 280px;
+	width: calc(100% - 240px);
+	left: 240px;
 	transition: .3s ease;
 }
 #sidebar.hide ~ #content {
@@ -290,7 +290,7 @@ body {
 /* MAIN */
 #content main {
 	width: 100%;
-	padding: 36px 24px;
+	padding: 24px 24px;
 	font-family: var(--poppins);
 	max-height: calc(100vh - 56px);
 	overflow-y: auto;
@@ -299,7 +299,6 @@ body {
 	display: flex;
 	flex-wrap: wrap;
 	grid-gap: 24px;
-	margin-top: 24px;
 	width: 100%;
 	color: var(--dark);
 }
@@ -379,7 +378,6 @@ body {
 #content main .table-data .order table tr td .status.pending {
 	background: var(--orange);
 }
-
 
 #content main .table-data .todo {
 	flex-grow: 1;
@@ -462,6 +460,7 @@ body {
 img{
     border-radius: 50%;
     max-height: 40px;
+	max-width: 40px;
 }
 
 .logo{
@@ -482,8 +481,7 @@ img{
 /* LOGO SERVICIO SOCIAL */
 .Servicio_img{
 	padding-left: 12px;
-	padding-right: 12px	;
-
+	padding-right: 12px;	
 }
 /*LOGO SERVICIO SOCIAL */
 
@@ -534,13 +532,11 @@ img{
 		background: var(--red);
 	}
 
+	/* AQUI EN VEZ DE NOTIFICACION Y PROFILE PUES DEBERIA IR LO DE CONTACTO */
+
 	#content nav form.show ~ .notification,
 	#content nav form.show ~ .profile {
 		display: none;
-	}
-
-	#content main .box-info {
-		grid-template-columns: 1fr;
 	}
 
 	#content main .table-data .head {
