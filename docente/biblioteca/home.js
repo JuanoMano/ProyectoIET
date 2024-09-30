@@ -15,6 +15,9 @@ allSideMenu.forEach(item=> {
 	})
 });
 
+
+
+
 // TOGGLE SIDEBAR
 const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
@@ -22,6 +25,9 @@ const sidebar = document.getElementById('sidebar');
 menuBar.addEventListener('click', function () {
 	sidebar.classList.toggle('hide');
 })
+
+
+
 
 //RESPONSIVE EN SITUACIONES CONCRETAS
 
@@ -56,6 +62,9 @@ window.addEventListener('resize', function () {
 	}
 })
 
+
+
+
 // FUNCION DEL SWTICH MODE
 
 const switchMode = document.getElementById('switch-mode');
@@ -67,6 +76,9 @@ switchMode.addEventListener('change', function () {
 		document.body.classList.remove('dark');
 	}
 })
+
+
+
 
 //SCRIPTS PARA LA LISTA DE ESTUDIANTES 
 
@@ -108,6 +120,7 @@ document.getElementById('regEst').addEventListener('submit', function(event) {
 
 
 
+
 //SCRIPS PARA LAS ACTIVIDADES
 
 // Abrir el modal al hacer clic en "bx-upload"
@@ -125,15 +138,15 @@ document.getElementById('activityForm').addEventListener('submit', async functio
     const numMembers = document.getElementById('numMembers').value;
     const hours = document.getElementById('hours').value;
     const dueDate = document.getElementById('dueDate').value;
-    let name, id
+    const details = document.getElementById('activityDetails').value
+    let name
 
 	await onAuthChecking().then(session => {
-		name = session.user.user_metadata.name
-        id = session.user.id
+	    name = session.user.user_metadata.name
 	})
 
     //llamar a la funcion para subir los datos de la actividad a la base de datos.
-    await insertGlobalA(activityName, numMembers, hours, dueDate, id)
+    await insertGlobalA(activityName, numMembers, hours, dueDate, name, details)
 
     // Generar un ID único para los detalles
     const detailsId = 'details-' + Math.floor(Math.random() * 1000);
@@ -145,6 +158,7 @@ document.getElementById('activityForm').addEventListener('submit', async functio
             <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
             <div class="activity-details" id="${detailsId}" style="display: none;">
 				<p>Docente: ${name}</p> 
+                <p>Detalles: ${details}</p>
                 <p>Integrantes: ${numMembers}</p>
                 <p>Horas: ${hours}</p>
                 <p>Fecha Límite: ${dueDate}</p>

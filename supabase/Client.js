@@ -26,7 +26,7 @@ export async function onLogin(email, password, path) {
     if (role == "DOC") {
 
         if (depend == "Biblioteca") {
-            path = "/docente/biblioteca/home.html";
+            path = "/docente/biblioteca/newhome.html";
         } else if (depend == "Cartelera") {
             path = "/docente/cartelera/fofef.html";
         } else {
@@ -127,13 +127,13 @@ export async function onAuthChecking() {
     return session
 }
 
-// actividades globales
+// actividades globalesg
 
-export async function insertGlobalA(name, cantI, cantH, fecha, createBy){
+export async function insertGlobalA(actName, cantI, cantH, fecha, createBy, details){
 
     const { error } = await supabase
   .from('actG')
-  .insert({ name: name, cantI: cantI, cantH: cantH, fecha: fecha, createBy: createBy })
+  .insert({ name: actName, cantI: cantI, cantH: cantH, fecha: fecha, createBy: createBy, details: details })
 
   if (error) {
     console.error('Error al insertar datos:', error);
