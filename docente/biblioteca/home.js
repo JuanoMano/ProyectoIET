@@ -146,7 +146,7 @@ document.getElementById('activityForm').addEventListener('submit', async functio
 	})
 
     //llamar a la funcion para subir los datos de la actividad a la base de datos.
-    await insertGlobalA(activityName, numMembers, hours, dueDate, name, details)
+    // await insertGlobalA(activityName, numMembers, hours, dueDate, name, details)
 
     // Generar un ID único para los detalles
     const detailsId = 'details-' + Math.floor(Math.random() * 1000);
