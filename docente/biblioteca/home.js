@@ -92,7 +92,7 @@ document.getElementById('regEst').addEventListener('submit', function(event) {
         <td>${studentGrade}</td>
         <td>
             <span class="status pending">Pending</span>
-            <button class="bx bx-edit"></button>
+            <a class="bx bx-edit"></a>
         </td>
     `;
 
