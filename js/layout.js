@@ -1,4 +1,4 @@
-import {  } from "../supabase/Client";
+import { onAuthChecking, getEst } from "../supabase/Client";
 
 //honestamente no se para que funciona
 
@@ -20,7 +20,8 @@ const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
 menuBar.addEventListener('click', function () {
-	sidebar.classList.toggle('hide');
+	sidebar.classList.toggle('hide')
+	console.log(depend)
 })
 
 // FUNCION BOTON OPCIONES

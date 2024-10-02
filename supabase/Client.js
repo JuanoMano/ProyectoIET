@@ -117,8 +117,8 @@ let depend
 export async function onAuthChecking() {
     const { data: {session}, error } = await supabase.auth.getSession()
 
-    depend = session.user.user_metadata.depend
-
+        depend = session.user.user_metadata.depend
+ 
     if (error) {
         alert("Error al comprobar la sesion")
         return
@@ -225,6 +225,12 @@ export async function displayActG() {
 
 export async function insertActD(actName, details, cantI, cantH, fecha) {
 
+    let depend
+
+    await onAuthChecking().then(session => {
+        depend = session.user.user_metadata.depend
+    })
+
     const { error } = await supabase
     .from('actDepend')
     .insert({
@@ -248,6 +254,12 @@ export async function insertActD(actName, details, cantI, cantH, fecha) {
 //OBTENER actividades segun la dependencia
 
 export async function getAct() {
+
+    let depend
+
+    await onAuthChecking().then(session => {
+        depend = session.user.user_metadata.depend
+    })
 
     try {
         // Consulta a Supabase para obtener las filas donde 'typeD' coincida con 'depend'
@@ -278,7 +290,7 @@ export async function getAct() {
 
 //MOSTRAR las actividades segun la dependencia
 
-export async function displayAct() {
+export async function  displayAct() {
 
         const activities = await getAct()
 
@@ -287,7 +299,7 @@ export async function displayAct() {
             return;
         }
 
-        const activitiesList = document.getElementById('activities-list');
+        const activitiesList = document.getElementById('activity-list');
 
         // Iterar sobre cada actividad y agregarla al HTML
         activities.forEach(activity => {
@@ -329,12 +341,19 @@ export async function displayAct() {
 
 export async function insertEst(name, grade) {
 
+    let depend
+
+    await onAuthChecking().then(session => {
+        depend = session.user.user_metadata.depend
+    })
+
     const { error, data } = await supabase
     .from('estList')
     .insert({
         name: name,
         grade: grade,
-        hours: '0'
+        hours: '0',
+        typeD: depend
     })
 
     if (error) {
@@ -349,6 +368,12 @@ export async function insertEst(name, grade) {
 //OBTENER estudiantes segun la dependencia
 
 export async function getEst() {
+
+    let depend
+
+    await onAuthChecking().then(session => {
+        depend = session.user.user_metadata.depend
+    })
 
     const { error, data } = await supabase
     .from('estList')
@@ -369,4 +394,10 @@ export async function getEst() {
 
     // Retorna las actividades obtenidas (si se necesitan en otra parte del código)
     return data;
+}
+
+//MOSTRAR mi perfil si soy estudiante
+
+export async function displayMe(params) {
+    
 }

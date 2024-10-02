@@ -108,12 +108,28 @@
 		<main>
 			<div class="table-data">
 				<div class="order">
-					<h1>hola buenas</h1>
+					<div class="head">
+						<h3>Mi dependencia</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-plus' id="add-student-btn"></i>
+					</div>
+					<table>
+						<thead>
+							<tr>
+								<th>Estudiante</th>
+								<th>Grado</th>
+								<th>Horas</th>
+							</tr>
+						</thead>
+						<tbody class="StudentList" id="student-list">
+							 <!-- Nuevas filas se agregarán aquí -->
+						</tbody>
+					</table>
 				</div>
 
 				<div class="todo">
 					<div class="head mb-3">
-						<h3>Actividades Globales</h3>
+						<h3>Actividades Internas</h3>
 						<i class='bx bx-upload' id="open-modal"></i>
 					</div>
 					<ul class="todo-list" id="activity-list">
@@ -125,9 +141,9 @@
 		<!-- MAIN -->
 	</section>
 	<!-- CONTENT -->
-	 
+
 	<script type="module" src="/js/layout.js"></script>
-	<script type="module" src="home.js"></script>
+	<script type="module" src="actividades.js"></script>
 	<script type="module" src="../index.js"></script>
 </body>
 </html>

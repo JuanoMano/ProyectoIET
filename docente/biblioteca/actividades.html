@@ -24,7 +24,7 @@
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
-				<a href="#">
+				<a href="home.html">
 					<i class='bx bx-home' ></i>
 					<span class="text">Home</span>
 				</a>
@@ -36,13 +36,13 @@
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="https://q.plataformaintegra.net/ietfelixtiberio/arc/manual/manual_de_convivencia.pdf?v=5778" target="_blank">
 					<i class='bx bx-book' ></i>
 					<span class="text">Manual de convivencia</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="actividades.html">
 					<i class='bx bx-check-square' ></i>
 					<span class="text">Actividades</span>
 				</a>
@@ -127,6 +127,40 @@
 					</table>
 				</div>
 
+				<!-- modal para cuando de clic en bx-upload -->
+
+				<div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="studentModalLabel">Registrar Estudiante</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<form id="regEst">
+									<div class="mb-3">
+										<label for="name" class="form-label">Nombre Completo</label>
+										<input type="text" class="form-control" id="name" placeholder="Ingresa el nombre completo" required>
+									</div>
+									<div class="mb-3">
+										<label for="grade" class="form-label">Grado</label>
+										<input type="text" class="form-control" id="grade" placeholder="Ingresa el grado" required>
+									</div>
+									<div class="mb-3">
+										<label for="email" class="form-label">Correo Electrónico</label>
+										<input type="email" class="form-control" id="email" placeholder="Ingresa el correo" required>
+									</div>
+									<div class="mb-3">
+										<label for="password" class="form-label">Contraseña</label>
+										<input type="password" class="form-control" id="password" placeholder="Ingresa la contraseña" required>
+									</div>
+									<button type="submit" class="btn btn-success">Crear Estudiante</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="todo">
 					<div class="head mb-3">
 						<h3>Actividades Internas</h3>
@@ -180,7 +214,7 @@
 	<!-- CONTENT -->
 
 	<script type="module" src="/js/layout.js"></script>
-	<script type="module" src="home.js"></script>
+	<script type="module" src="actividades.js"></script>
 	<script type="module" src="../index.js"></script>
 </body>
 </html>
