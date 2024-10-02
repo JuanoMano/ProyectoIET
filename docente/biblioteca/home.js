@@ -1,84 +1,4 @@
-import { onAuthChecking, insertGlobalA } from "../../supabase/Client";
-
-//honestamente no se para que funciona
-
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
-
-allSideMenu.forEach(item=> {
-	const li = item.parentElement;
-
-	item.addEventListener('click', function () {
-		allSideMenu.forEach(i=> {
-			i.parentElement.classList.remove('active');
-		})
-		li.classList.add('active');
-	})
-});
-
-
-
-
-// TOGGLE SIDEBAR
-const menuBar = document.querySelector('#content nav .bx.bx-menu');
-const sidebar = document.getElementById('sidebar');
-
-menuBar.addEventListener('click', function () {
-	sidebar.classList.toggle('hide');
-})
-
-
-
-
-//RESPONSIVE EN SITUACIONES CONCRETAS
-
-const searchButton = document.querySelector('#content nav form .form-input button');
-const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
-const searchForm = document.querySelector('#content nav form');
-
-searchButton.addEventListener('click', function (e) {
-	if(window.innerWidth < 576) {
-		e.preventDefault();
-		searchForm.classList.toggle('show');
-		if(searchForm.classList.contains('show')) {
-			searchButtonIcon.classList.replace('bx-search', 'bx-x');
-		} else {
-			searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		}
-	}
-})
-
-if(window.innerWidth < 768) {
-	sidebar.classList.add('hide');
-} else if(window.innerWidth > 576) {
-	searchButtonIcon.classList.replace('bx-x', 'bx-search');
-	searchForm.classList.remove('show');
-}
-
-
-window.addEventListener('resize', function () {
-	if(this.innerWidth > 576) {
-		searchButtonIcon.classList.replace('bx-x', 'bx-search');
-		searchForm.classList.remove('show');
-	}
-})
-
-
-
-
-// FUNCION DEL SWTICH MODE
-
-const switchMode = document.getElementById('switch-mode');
-
-switchMode.addEventListener('change', function () {
-	if(this.checked) {
-		document.body.classList.add('dark');
-	} else {
-		document.body.classList.remove('dark');
-	}
-})
-
-
-
+import { onAuthChecking, insertGlobalA, getAct, getActG} from "../../supabase/Client";
 
 //SCRIPTS PARA LA LISTA DE ESTUDIANTES 
 
@@ -95,6 +15,8 @@ document.getElementById('regEst').addEventListener('submit', function(event) {
     // Obtener los valores del formulario
     const studentName = document.getElementById('name').value;
     const studentGrade = document.getElementById('grade').value;
+
+    insertEst(name, grade)
 
     // Crear una nueva fila para la tabla
     const newRow = document.createElement('tr');
@@ -116,12 +38,11 @@ document.getElementById('regEst').addEventListener('submit', function(event) {
     // Cerrar el modal
     const addStudentModal = bootstrap.Modal.getInstance(document.getElementById('studentModal'));
     addStudentModal.hide();
+
+    
 });
 
-
-
-
-//SCRIPS PARA LAS ACTIVIDADES
+//SCRIPS PARA LAS ACTIVIDADES GLOBALES
 
 // Abrir el modal al hacer clic en "bx-upload"
 document.getElementById('open-modal').addEventListener('click', function() {
@@ -135,10 +56,10 @@ document.getElementById('activityForm').addEventListener('submit', async functio
 
     // Obtener los valores del formulario
     const activityName = document.getElementById('activityName').value;
+    const details = document.getElementById('activityDetails').value
     const numMembers = document.getElementById('numMembers').value;
     const hours = document.getElementById('hours').value;
     const dueDate = document.getElementById('dueDate').value;
-    const details = document.getElementById('activityDetails').value
     let name
 
 	await onAuthChecking().then(session => {
@@ -146,7 +67,7 @@ document.getElementById('activityForm').addEventListener('submit', async functio
 	})
 
     //llamar a la funcion para subir los datos de la actividad a la base de datos.
-    // await insertGlobalA(activityName, numMembers, hours, dueDate, name, details)
+    await insertGlobalA(activityName, details, numMembers, hours, dueDate, name)
 
     // Generar un ID único para los detalles
     const detailsId = 'details-' + Math.floor(Math.random() * 1000);

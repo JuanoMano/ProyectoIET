@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 export const supabase = createClient(import.meta.env.VITE_APP_SUPABASE_URL, import.meta.env.VITE_APP_SUPABASE_ANON_KEY)
 
-//autenticar credenciales para loguearse
+// autentica credenciales y logeo
 
 export async function onLogin(email, password, path) {
 
@@ -18,15 +18,11 @@ export async function onLogin(email, password, path) {
     } 
     
     const { role, depend } = data.user.user_metadata
-
-    // if (role == type_role) {    
-    //     window.location.href = path
-    // }
     
     if (role == "DOC") {
 
         if (depend == "Biblioteca") {
-            path = "/docente/biblioteca/newhome.html";
+            path = "/docente/biblioteca/home.html";
         } else if (depend == "Cartelera") {
             path = "/docente/cartelera/fofef.html";
         } else {
@@ -116,8 +112,12 @@ export async function onSignOut() {
 
 //comprueba si existe una sesion y la entrega
 
+let depend
+
 export async function onAuthChecking() {
     const { data: {session}, error } = await supabase.auth.getSession()
+
+    depend = session.user.user_metadata.depend
 
     if (error) {
         alert("Error al comprobar la sesion")
@@ -127,13 +127,20 @@ export async function onAuthChecking() {
     return session
 }
 
-// actividades globalesg
+// CREAR actividades globales
 
-export async function insertGlobalA(actName, cantI, cantH, fecha, createBy, details){
+export async function insertGlobalA(actName, details, cantI, cantH, fecha, createBy){
 
     const { error } = await supabase
-  .from('actG')
-  .insert({ name: actName, cantI: cantI, cantH: cantH, fecha: fecha, createBy: createBy, details: details })
+  .from('actGlobal')
+  .insert({ name: actName,
+    cantI: cantI, 
+    cantH: cantH, 
+    fecha: fecha, 
+    createBy: createBy, 
+    details: details ,
+    createBy: createBy
+    })
 
   if (error) {
     console.error('Error al insertar datos:', error);
@@ -142,4 +149,224 @@ export async function insertGlobalA(actName, cantI, cantH, fecha, createBy, deta
     console.log('Datos insertados correctamente');
     }
 
+}
+
+//OBTENER actividades globales
+
+export async function getActG() {
+    const { data, error } = await supabase
+    .from('actGlobal')
+    .select('*')
+
+    if(error){
+        console.error("error al obtener las actividades globales: ", error)
+        return[]
+    }
+
+    if (data.length > 0) {
+        console.log("Actividades globales encontradas:", data);
+    } else {
+        console.log("No se encontraron actividades globales");
+    }
+    return data
+}
+
+//MOSTRAR actividades globales
+
+export async function displayActG() {
+    
+    const activities = await getActG()
+
+    if (!activities || activities.length === 0) {
+        console.log("No hay actividades para procesar.");
+        return;
+    }
+
+    const activitiesList = document.getElementById('activities-list');
+
+    // Iterar sobre cada actividad y agregarla al HTML
+    activities.forEach(activity => {
+        const detailsId = `activity-${activity.id}`;  // Añadir prefijo al ID
+
+        const li = document.createElement('li');
+        li.classList.add('not-completed');
+
+        li.innerHTML = `
+            <p>${activity.name}</p>
+            <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
+            <div class="activity-details" id="${detailsId}" style="display: none;">
+                <p>Docente: ${activity.createBy}</p>
+                <p>Detalles: ${activity.details}</p>
+                <p>Integrantes: ${activity.cantI}</p>
+                <p>Horas: ${activity.cantH}</p>
+                <p>Fecha Límite: ${activity.fecha}</p>
+            </div>
+        `;
+
+        activitiesList.appendChild(li);
+
+        const toggleDetails = li.querySelector(`.toggle-details`);
+        const detailsDiv = li.querySelector(`#${detailsId}`);
+        
+        toggleDetails.addEventListener('click', () => {
+            if (detailsDiv.style.display === 'none') {
+                detailsDiv.style.display = 'block';
+                toggleDetails.classList.replace('bx-hide', 'bx-show');
+            } else {
+                detailsDiv.style.display = 'none';
+                toggleDetails.classList.replace('bx-show', 'bx-hide');
+            }
+        });
+    });
+
+}
+
+//INSERT actividades en la dependencia
+
+export async function insertActD(actName, details, cantI, cantH, fecha) {
+
+    const { error } = await supabase
+    .from('actDepend')
+    .insert({
+        name: actName,
+        details: details,
+        cantI: cantI,
+        cantH: cantH,
+        fecha: fecha,
+        typeD: depend
+    })
+
+    if (error) {
+        console.error('Error al insertar datos:', error);
+        alert('Error al insertar datos: ' + error.message);  // Mostrar el error en la página
+    } else {
+        console.log('Datos insertados correctamente');
+    }
+    
+}
+
+//OBTENER actividades segun la dependencia
+
+export async function getAct() {
+
+    try {
+        // Consulta a Supabase para obtener las filas donde 'typeD' coincida con 'depend'
+        const { data, error } = await supabase
+            .from('actDepend')  // Reemplaza con el nombre de tu tabla si es diferente
+            .select('*')  // Selecciona todas las columnas
+            .eq('typeD', depend);  // Filtro: Solo filas donde typeD = depend
+
+        if (error) {
+            console.error("Error al obtener actividades:", error);
+            return [];
+        }
+
+        // Verifica si se obtuvieron actividades
+        if (data.length > 0) {
+            console.log("Actividades encontradas:", data);
+        } else {
+            console.log("No se encontraron actividades para la dependencia:", depend);
+        }
+
+        // Retorna las actividades obtenidas (si se necesitan en otra parte del código)
+        return data;
+
+    } catch (error) {
+        console.error("Ocurrió un error inesperado:", error);
+    }
+}
+
+//MOSTRAR las actividades segun la dependencia
+
+export async function displayAct() {
+
+        const activities = await getAct()
+
+        if (!activities || activities.length === 0) {
+            console.log("No hay actividades para procesar.");
+            return;
+        }
+
+        const activitiesList = document.getElementById('activities-list');
+
+        // Iterar sobre cada actividad y agregarla al HTML
+        activities.forEach(activity => {
+            const detailsId = `activity-${activity.id}`;  // Añadir prefijo al ID
+
+            const li = document.createElement('li');
+            li.classList.add('not-completed');
+
+            li.innerHTML = `
+                <p>${activity.name}</p>
+                <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
+                <div class="activity-details" id="${detailsId}" style="display: none;">
+                    <p>Detalles: ${activity.details}</p>
+                    <p>Integrantes: ${activity.cantI}</p>
+                    <p>Horas: ${activity.cantH}</p>
+                    <p>Fecha Límite: ${activity.fecha}</p>
+                </div>
+            `;
+
+            activitiesList.appendChild(li);
+
+            const toggleDetails = li.querySelector(`.toggle-details`);
+            const detailsDiv = li.querySelector(`#${detailsId}`);
+            
+            toggleDetails.addEventListener('click', () => {
+                if (detailsDiv.style.display === 'none') {
+                    detailsDiv.style.display = 'block';
+                    toggleDetails.classList.replace('bx-hide', 'bx-show');
+                } else {
+                    detailsDiv.style.display = 'none';
+                    toggleDetails.classList.replace('bx-show', 'bx-hide');
+                }
+            });
+        });
+    
+}
+
+// AGREGAR estudiantes a la base de datos
+
+export async function insertEst(name, grade) {
+
+    const { error, data } = await supabase
+    .from('estList')
+    .insert({
+        name: name,
+        grade: grade,
+        hours: '0'
+    })
+
+    if (error) {
+        console.error('Error al insertar datos:', error);
+        alert('Error al insertar datos: ' + error.message);  // Mostrar el error en la página
+    } else {
+        console.log('Datos insertados correctamente');
+    }
+
+}
+
+//OBTENER estudiantes segun la dependencia
+
+export async function getEst() {
+
+    const { error, data } = await supabase
+    .from('estList')
+    .select('*')
+    .eq('typeD', depend)
+
+    if (error) {
+        console.error("Error al obtener estudiantes:", error);
+        return [];
+    }
+
+    // Verifica si se obtuvieron estudiantes
+    if (data.length > 0) {
+        console.log("Estudiantes encontrados:", data);
+    } else {
+        console.log("No se encontraron estudiantes para la dependencia:", depend);
+    }
+
+    // Retorna las actividades obtenidas (si se necesitan en otra parte del código)
+    return data;
 }
