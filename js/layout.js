@@ -1,4 +1,4 @@
-import {  } from "../../supabase/Client";
+import {  } from "../supabase/Client";
 
 //honestamente no se para que funciona
 
