@@ -1,4 +1,4 @@
-import { onAuthChecking, getEst } from "../supabase/Client";
+import { onAuthChecking } from "../supabase/Client";
 
 //honestamente no se para que funciona
 
@@ -20,8 +20,12 @@ const menuBar = document.querySelector('#content nav .bx.bx-menu');
 const sidebar = document.getElementById('sidebar');
 
 menuBar.addEventListener('click', function () {
-	sidebar.classList.toggle('hide')
-	console.log(depend)
+	sidebar.classList.toggle('hide');
+
+   onAuthChecking().then(session => {
+    console.log(session)
+   })
+  
 })
 
 // FUNCION BOTON OPCIONES
@@ -38,6 +42,73 @@ optionsButton.addEventListener('click', function (e) {
     } else {
         optionsBox.style.display = 'none';
     }
+});
+
+// BOTON PQRS
+document.getElementById('sendPQRS').addEventListener('click', function () {
+    const pqrsModal = new bootstrap.Modal(document.getElementById('enviarPQRSModal'));
+    pqrsModal.show();
+});
+
+//ENVIAR CORREOS PQRS
+
+document.getElementById('pqrsForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const tipo = document.getElementById('pqrsTipo').value;
+    const asunto = document.getElementById('pqrsAsunto').value;
+    const categoria = document.getElementById('pqrsCategoria').value;
+    const correo = document.getElementById('pqrsCorreo').value;
+    const descripcion = document.getElementById('pqrsDescripcion').value;
+
+    const templateParams = {
+        to_email: correo,
+        subject: asunto,
+        type: tipo,
+        category: categoria,
+        description: descripcion,
+    };
+
+    emailjs.send('service_euppjbn', 'Kevin Donoso', templateParams)
+        .then(function(response) {
+           alert('PQRS enviado exitosamente');
+        }, function(error) {
+           alert('Error al enviar PQRS');
+        });
+});
+
+// MOSTRAR PQRS ENVIADOS
+
+document.getElementById('pqrsForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const tipo = document.getElementById('pqrsTipo').value;
+    const asunto = document.getElementById('pqrsAsunto').value;
+    const categoria = document.getElementById('pqrsCategoria').value;
+    const correo = document.getElementById('pqrsCorreo').value;
+    const descripcion = document.getElementById('pqrsDescripcion').value;
+
+    // Agregar a la lista de PQRS enviados
+    const pqrsEnviadosList = document.getElementById('pqrsEnviados');
+    const listItem = document.createElement('li');
+    listItem.textContent = `${tipo}: ${asunto} - ${categoria}`;
+    pqrsEnviadosList.appendChild(listItem);
+
+    // Enviar el correo
+    const templateParams = {
+        to_email: correo,
+        subject: asunto,
+        type: tipo,
+        category: categoria,
+        description: descripcion,
+    };
+
+    emailjs.send('service_euppjbn', 'Kevin Donoso', templateParams)
+        .then(function(response) {
+           alert('PQRS enviado exitosamente');
+        }, function(error) {
+           alert('Error al enviar PQRS');
+        });
 });
 
 //BOTON CONTACTOS

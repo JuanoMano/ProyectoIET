@@ -1,6 +1,8 @@
-import { onAuthChecking, insertGlobalA, getAct, getActG} from "../../supabase/Client";
+import { onAuthChecking, insertGlobalA, displayActG} from "../../supabase/Client";
 
 //SCRIPS PARA LAS ACTIVIDADES GLOBALES
+
+displayActG()
 
 // Abrir el modal al hacer clic en "bx-upload"
 document.getElementById('open-modal').addEventListener('click', function() {
@@ -44,7 +46,7 @@ document.getElementById('activityForm').addEventListener('submit', async functio
             </div>
         </li>
     `;
-		
+    
     // Agregar la nueva actividad a la lista
     document.getElementById('activity-list').insertAdjacentHTML('beforeend', newActivity);
 

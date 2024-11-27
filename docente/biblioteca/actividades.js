@@ -1,4 +1,7 @@
-import { onAuthChecking,insertEst, getAct, insertActD } from "../../supabase/Client";
+import { onAuthChecking,insertEst, displayAct, insertActD, onRegister } from "../../supabase/Client";
+
+let depend
+displayAct()
 
 //SCRIPTS PARA LA LISTA DE ESTUDIANTES 
 
@@ -13,17 +16,16 @@ document.getElementById('regEst').addEventListener('submit', async function(even
     event.preventDefault();
 
     // Obtener los valores del formulario
-    const studentName = document.getElementById('name').value;
-    const studentGrade = document.getElementById('grade').value;
-    let depend
+    const studentName = document.getElementById('name').value
+    const studentGrade = document.getElementById('grade').value
+    const studentEmail = document.getElementById('email').value
+    const studentPass = document.getElementById('password').value
 
-    await onAuthChecking().then(session => {
+    onAuthChecking().then(session => {
         depend = session.user.user_metadata.depend
+        onRegister(studentEmail, studentPass, 'EST', studentName, studentGrade, depend)
+        insertEst(studentName, studentGrade, depend)
     })
-
-    console.log(depend)
-
-    await insertEst(studentName, studentGrade, depend)
 
     // Crear una nueva fila para la tabla
     const newRow = document.createElement('tr');

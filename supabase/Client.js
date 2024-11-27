@@ -182,7 +182,7 @@ export async function displayActG() {
         return;
     }
 
-    const activitiesList = document.getElementById('activities-list');
+    const activitiesList = document.getElementById('activity-list');
 
     // Iterar sobre cada actividad y agregarla al HTML
     activities.forEach(activity => {
@@ -192,16 +192,15 @@ export async function displayActG() {
         li.classList.add('not-completed');
 
         li.innerHTML = `
-            <p>${activity.name}</p>
-            <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
-            <div class="activity-details" id="${detailsId}" style="display: none;">
-                <p>Docente: ${activity.createBy}</p>
-                <p>Detalles: ${activity.details}</p>
-                <p>Integrantes: ${activity.cantI}</p>
-                <p>Horas: ${activity.cantH}</p>
-                <p>Fecha Límite: ${activity.fecha}</p>
-            </div>
-        `;
+                <p>${activity.name}</p>
+                <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
+                <div class="activity-details" id="${detailsId}" style="display: none;">
+                    <p>Detalles: ${activity.details}</p>
+                    <p>Integrantes: ${activity.cantI}</p>
+                    <p>Horas: ${activity.cantH}</p>
+                    <p>Fecha Límite: ${activity.fecha}</p>
+                </div>
+            `;
 
         activitiesList.appendChild(li);
 
@@ -290,50 +289,50 @@ export async function getAct() {
 
 //MOSTRAR las actividades segun la dependencia
 
-export async function  displayAct() {
+export async function displayAct() {
 
-        const activities = await getAct()
+    const activities = await getAct()
 
-        if (!activities || activities.length === 0) {
-            console.log("No hay actividades para procesar.");
-            return;
-        }
+    if (!activities || activities.length === 0) {
+        console.log("No hay actividades para procesar.");
+        return;
+    }
 
-        const activitiesList = document.getElementById('activity-list');
+    const activitiesList = document.getElementById('activity-list')
 
-        // Iterar sobre cada actividad y agregarla al HTML
-        activities.forEach(activity => {
-            const detailsId = `activity-${activity.id}`;  // Añadir prefijo al ID
+    // Iterar sobre cada actividad y agregarla al HTML
+    activities.forEach(activity => {
+        const detailsId = `activity-${activity.id}`;  // Añadir prefijo al ID
 
-            const li = document.createElement('li');
-            li.classList.add('not-completed');
+        const li = document.createElement('li');
+        li.classList.add('not-completed');
 
-            li.innerHTML = `
-                <p>${activity.name}</p>
-                <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
-                <div class="activity-details" id="${detailsId}" style="display: none;">
-                    <p>Detalles: ${activity.details}</p>
-                    <p>Integrantes: ${activity.cantI}</p>
-                    <p>Horas: ${activity.cantH}</p>
-                    <p>Fecha Límite: ${activity.fecha}</p>
-                </div>
-            `;
+        li.innerHTML = `
+            <p>${activity.name}</p>
+            <i class='bx bx-hide toggle-details' data-details-id="${detailsId}"></i>
+            <div class="activity-details" id="${detailsId}" style="display: none;">
+                <p>Detalles: ${activity.details}</p>
+                <p>Integrantes: ${activity.cantI}</p>
+                <p>Horas: ${activity.cantH}</p>
+                <p>Fecha Límite: ${activity.fecha}</p>
+            </div>
+        `;
 
-            activitiesList.appendChild(li);
+        activitiesList.appendChild(li);
 
-            const toggleDetails = li.querySelector(`.toggle-details`);
-            const detailsDiv = li.querySelector(`#${detailsId}`);
-            
-            toggleDetails.addEventListener('click', () => {
-                if (detailsDiv.style.display === 'none') {
-                    detailsDiv.style.display = 'block';
-                    toggleDetails.classList.replace('bx-hide', 'bx-show');
-                } else {
-                    detailsDiv.style.display = 'none';
-                    toggleDetails.classList.replace('bx-show', 'bx-hide');
-                }
-            });
+        const toggleDetails = li.querySelector(`.toggle-details`);
+        const detailsDiv = li.querySelector(`#${detailsId}`);
+        
+        toggleDetails.addEventListener('click', () => {
+            if (detailsDiv.style.display === 'none') {
+                detailsDiv.style.display = 'block';
+                toggleDetails.classList.replace('bx-hide', 'bx-show');
+            } else {
+                detailsDiv.style.display = 'none';
+                toggleDetails.classList.replace('bx-show', 'bx-hide');
+            }
         });
+    });
     
 }
 
